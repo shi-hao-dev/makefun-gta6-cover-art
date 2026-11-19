@@ -3,20 +3,72 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Sunset Cover Studio — multi-panel cover art maker</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
+  <section class="controls" aria-label="Cover controls">
+    <h1>Sunset Cover Studio</h1>
+    <p class="lede">Your photos + a caption, made into a multi-panel sunset poster.
+      Everything runs offline — photos never leave your machine.</p>
+
+    <fieldset>
+      <legend>Photos — one per panel</legend>
+      <label>Panel 1 · hero <input type="file" accept="image/*" data-panel-file="0"></label>
+      <label>Panel 2 <input type="file" accept="image/*" data-panel-file="1"></label>
+      <label>Panel 3 <input type="file" accept="image/*" data-panel-file="2"></label>
+      <div class="row">
+        <button id="fill-samples" type="button">Load demo photos</button>
+        <button id="fill-all" type="button">Same photo in all panels</button>
+      </div>
+      <p class="hint">Click a panel in the preview to select it, then drag inside it
+        to reposition the photo or scroll to zoom.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Selected panel</legend>
+      <p id="panel-name" class="panel-name">Panel 1 of 3 — empty</p>
+      <label>Zoom
+        <span class="slider-row">
+          <input id="zoom" type="range" min="100" max="300" value="100">
+          <span id="zoom-value">100%</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Caption</legend>
+      <label>Title <input id="title" type="text" maxlength="40" value="Vice City Nights"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="60" value="Your story, in neon"></label>
+      <label>City tag <input id="tag" type="text" maxlength="20" value="Vice City"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Colour grade</legend>
+      <div class="row" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="sunset" class="active">Sunset</button>
+        <button type="button" data-grade="neon">Neon</button>
+        <button type="button" data-grade="dusk">Dusk</button>
+        <button type="button" data-grade="golden">Golden</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Post size</legend>
+      <div class="row" role="group" aria-label="Post size">
+        <button type="button" data-size="square">1080 × 1080</button>
+        <button type="button" data-size="portrait" class="active">1080 × 1350</button>
+        <button type="button" data-size="wide">1920 × 1080</button>
+      </div>
+    </fieldset>
+
+    <button id="export" type="button" class="export">Export PNG</button>
     <p id="status" role="status"></p>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+  <section class="preview" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1350" aria-label="The cover"></canvas>
+  </section>
 </main>
 <script type="module" src="./src/main.js"></script>
 </body>
