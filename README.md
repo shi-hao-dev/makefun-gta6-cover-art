@@ -60,3 +60,4 @@ mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
 Built for make.fun's "Make GTA 6 Cover Art" bounty. Try make.fun yourself:
 https://make.fun/r/ssmh6x4k (referral code `ssmh6x4k`).
+<!-- resubmit: README re-authored under a new recording -->
